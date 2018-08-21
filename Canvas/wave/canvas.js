@@ -1,9 +1,12 @@
-import Wave from './wave.js';
 const canvas=document.getElementById('canvas');
+canvas.height=500;
+canvas.width=1500;
 const canvasWidth=canvas.width;
 const canvasHeight=canvas.height;
 const ctx=canvas.getContext("2d");
 
+//生成波浪动画
+import Wave from './wave.js';
 const wave1=new Wave({
   canvasHeight,
   canvasWidth,
@@ -32,4 +35,3 @@ function draw(){
 }
 draw();
 
-//生成波浪动画

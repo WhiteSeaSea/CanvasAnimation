@@ -1,4 +1,4 @@
-import {getLinearGradient} from './canvas-lib.js';
+import {getLinearGradient} from '../canvas-lib.js';
 export default class Wave{
   constructor({
     canvasHeight,
