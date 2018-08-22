@@ -17,10 +17,10 @@ export const getRadiusGradient = (ctx, circle = [{
   x: 30,
   y: 30,
   r: 5
-}], color) => {
+}], color,Numbers) => {
   let rg = ctx.createRadialGradient(circle[0].x, circle[0].y, circle[0].r, circle[1].x, circle[1].y, circle[1].r);
   color.forEach((item, index) => {
-    rg.addColorStop(index * (1 / (color.length - 1)), item);
+    rg.addColorStop(Numbers[index], item);
   });
   return rg
 }
