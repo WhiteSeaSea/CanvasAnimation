@@ -44,3 +44,12 @@ context.lineTo(canvasWidth/2,canvasHeight/2+190);
 context.lineTo(canvasWidth/2+10,canvasHeight/2+200);
 context.closePath();
 context.stroke();
+
+
+context.font="bold 80px Verdana";
+
+// context.fillStyle="white";
+// context.fillText("MAYDAY",canvasWidth/2-200,canvasHeight/2+300);
+context.strokeStyle="white";
+context.lineWidth=2;
+context.strokeText("MAYDAY",canvasWidth/2-195,canvasHeight/2+300)
