@@ -1,3 +1,12 @@
+let city=[
+    {
+        name:"",
+        x: ,
+        y: ,
+        size: ,
+        color: 
+    }
+];
 const canvas=document.getElementById('canvas');
 canvas.height = document.body.offsetHeight;
 canvas.width = document.body.offsetWidth;
