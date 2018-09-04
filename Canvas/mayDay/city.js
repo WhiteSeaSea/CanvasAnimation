@@ -7,7 +7,8 @@ export default class City{
         this.color=color;
     }
     init(context){
-        context.strokeStyle=`rgba(255,255,255,${this.color})`;
+        context.fillStyle=`rgba(255,255,255,${this.color})`;
+        //context.fillStyle="white";
         context.font=`bold ${this.size}px Microsoft YaHei`;
         context.fillText(this.name,this.x,this.y);
     }
