@@ -1,6 +1,6 @@
 import City from './city.js'
 import {
-    cityInfo
+    cityInfo,cityLocation
 } from './cityData.js'
 import Lemniscate from './lemniscate.js'
 //定义常量

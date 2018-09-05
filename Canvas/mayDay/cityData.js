@@ -456,3 +456,61 @@ export const cityInfo = [{
     type:1
   }
 ];
+export const cityLocation=[
+  {
+    x1:1720,
+    y1:480,
+    x2:1820,
+    y2:530,
+    src:"Canvas/mayDay/static/上海.mp4"
+  },
+  {
+    x1:770,
+    y1:610,
+    x2:1155,
+    y2:670,
+    src:"Canvas/mayDay/static/人生无限公司电影预告.mp4"
+  },
+  {
+    x1:210,
+    y1:320,
+    x2:310,
+    y2:370,
+    src:"Canvas/mayDay/static/北京.mp4"
+  },
+  {
+    x1:420,
+    y1:120,
+    x2:460,
+    y2:140,
+    src:"Canvas/mayDay/static/广州.mp4"
+  },
+  {
+    x1:1920-350,
+    y1:630,
+    x2:1920-350,
+    y2:680,
+    src:"Canvas/mayDay/static/当每颗星星.mp4"
+  },
+  {
+    x1:650,
+    y1:70,
+    x2:750,
+    y2:120,
+    src:"Canvas/mayDay/static/成名在望.mp4"
+  },
+  {
+    x1:100,
+    y1:650,
+    x2:160,
+    y2:680,
+    src:"Canvas/mayDay/static/新加坡.mp4"
+  },
+  {
+    x1:410,
+    y1:600,
+    x2:510,
+    y2:650,
+    src:"Canvas/mayDay/static/澳门.mp4"
+  }
+];
