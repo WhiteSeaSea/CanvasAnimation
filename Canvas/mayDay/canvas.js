@@ -1,61 +1,74 @@
 import City from './city.js'
-import {cityInfo} from './cityData.js'
-const canvas=document.getElementById('canvas');
+import {
+    cityInfo
+} from './cityData.js'
+import Lemniscate from './lemniscate.js'
+//定义常量
+const canvas = document.getElementById('canvas');
 canvas.height = document.body.offsetHeight;
 canvas.width = document.body.offsetWidth;
 const canvasWidth = canvas.width;
 const canvasHeight = canvas.height;
-const context=canvas.getContext('2d');
-const PI=Math.PI;
-
-context.rect(0,0,canvasWidth,canvasHeight)
-context.fillStyle="black";
+const context = canvas.getContext('2d');
+let lg = context.createLinearGradient(770, 610, 1155, 610);
+    lg.addColorStop(0, 'rgb(223,51,135)');
+    lg.addColorStop(0.5, 'rgb(90,155,195)');
+    lg.addColorStop(1, 'rgb(103,199,221)');
+let video = document.getElementById('video');
+const cursor = document.getElementById("cursor");
+//绘制背景
+context.rect(0, 0, canvasWidth, canvasHeight)
+context.fillStyle = "rgba(0,0,0,0.5)";
 context.fill();
-context.beginPath();
-let r,a,x,y
-for(let i=-PI;i<=PI;i+=PI/100){
-    r=Math.sqrt(2)*Math.sqrt(Math.cos(2*i));
-    a=r*50;
-    x=a*Math.cos(i);
-    y=a*Math.sin(i);
-    context.lineTo(x+canvasWidth/2,y+canvasHeight/2-220)
-}
-context.strokeStyle="white";
-context.lineWidth=8;
-context.stroke();
-context.beginPath();
-context.moveTo(canvasWidth/2-50,canvasHeight/2+100);
-context.lineTo(canvasWidth/2,canvasHeight/2-100);
-context.lineTo(canvasWidth/2+50,canvasHeight/2+100);
-context.stroke();
 
-context.beginPath();
-context.moveTo(canvasWidth/2-80,canvasHeight/2+100);
-context.lineTo(canvasWidth/2-80,canvasHeight/2-50);
-context.lineTo(canvasWidth/2,canvasHeight/2+30);
-context.lineTo(canvasWidth/2,canvasHeight/2+90);
-context.lineTo(canvasWidth/2-10,canvasHeight/2+100);
-context.closePath();
-context.stroke();
+//绘制伯努利双扭线
+let lemniscate=new Lemniscate(canvasWidth,canvasHeight);
+lemniscate.init(context);
 
-context.beginPath();
-context.moveTo(canvasWidth/2+80,canvasHeight/2+100);
-context.lineTo(canvasWidth/2+80,canvasHeight/2-50);
-context.lineTo(canvasWidth/2,canvasHeight/2+30);
-context.lineTo(canvasWidth/2,canvasHeight/2+90);
-context.lineTo(canvasWidth/2+10,canvasHeight/2+100);
-context.closePath();
-context.stroke();
+//王冠
+crown(context,canvasWidth,canvasHeight);
 
-
-context.font="bold 80px Verdana";
-// context.fillStyle="white";
-// context.fillText("MAYDAY",canvasWidth/2-200,canvasHeight/2+300);
-context.strokeStyle="white";
-context.lineWidth=2;
-context.strokeText("MAYDAY",canvasWidth/2-195,canvasHeight/2+200)
-
-cityInfo.forEach((item,index,arr)=>{
-    let city=new City(item.name,item.x,item.y,item.size,item.color);
-    city.init(context);
+//City
+cityInfo.forEach((item, index, arr) => {
+    let city = new City(item.name, item.x, item.y, item.size, item.color,item.type);
+    let x2=item.name.length*item.size;
+    console.log(x2);
+    let lg = context.createLinearGradient(item.x, item.y, item.x+x2+20, item.y);
+    lg.addColorStop(0, 'rgb(223,51,135)');
+    lg.addColorStop(0.5, 'rgb(90,155,195)');
+    lg.addColorStop(1, 'rgb(103,199,221)');
+    city.init(context,lg);
 })
+
+canvas.onmousemove=debounce(move,10);
+let interval;
+canvas.onmousedown = (e) => {
+
+    if (e.offsetY >= 610 && e.offsetY <= 670 && e.offsetX >= 770 && e.offsetX <= 1155) {
+        let t = 20;
+        interval = setInterval(() => {
+            if (t <= 40) {
+                t += 1;
+                cursor.style.width = `${t}px`;
+                cursor.style.height = `${t}px`;
+                cursor.style.transform = `matrix(1,0,0,1,${e.offsetX-t/2},${e.offsetY-t/2})`
+            }
+            if (t == 40) {
+
+                video.src = "Canvas/mayDay/static/人生无限公司电影预告.mp4";
+                video.style.zIndex = 1;
+            }
+
+        }, 100)
+        if (video.style.zIndex == 1) {
+            video.style="";
+            video.pause();
+            
+        }
+    }
+}
+canvas.onmouseup = (e) => {
+    clearInterval(interval);
+    cursor.style.width = "20px";
+    cursor.style.height = "20px";
+}
