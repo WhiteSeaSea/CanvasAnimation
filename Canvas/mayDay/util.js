@@ -48,3 +48,4 @@ function crown(context,canvasWidth,canvasHeight){
   context.closePath();
   context.stroke();
 }
+
